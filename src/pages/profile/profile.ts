@@ -88,6 +88,7 @@ export class ProfilePage {
           text: 'Save',
           handler: data => {
 
+
             // TODO handle these responses better than using console messages
 
             this.profileProvider.updateEmail(data.newEmail, data.password).then( () =>{

@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the EventCreatePage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { IonicPage, NavController } from 'ionic-angular';
+import { EventProvider } from '../../providers/event/event';
 
 @IonicPage()
 @Component({
@@ -15,11 +9,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EventCreatePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl:NavController, public eventProvider:EventProvider) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventCreatePage');
+  createEvent(eventName:string, eventDate:string, eventPrice:number, eventCost:number):void {
+    this.eventProvider.createEvent(eventName, eventDate, eventPrice, eventCost).then( newEvent => {
+      this.navCtrl.pop();
+    })
   }
-
+  // We use this.navCtrl.pop(); because it is a good practice to redirect the user after a form submits, this way we avoid the user clicking multiple times the submit button and create several entries.
 }
