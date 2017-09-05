@@ -33,6 +33,16 @@ export class EventProvider {
       revenue: eventCost * -1
     });
   }
+// Add new guest, then update the revenue using transactions to avoid conflicts
+  addGuest(guestName:string, eventId:string, eventPrice:number): firebase.Promise<any> {
+    return this.eventListRef.child(`${eventId}/guestList`).push({ guestName }) 
+      .then( newGuest => {
+        this.eventListRef.child(eventId).transaction( event => { 
+          event.revenue += eventPrice;
+          return event;
+        }); 
+      });
+    }
 
   // addGuest(guestName:string, eventId:string, eventPrice:number, guestPicture:string = null):
   // firebase.Promise<any> {

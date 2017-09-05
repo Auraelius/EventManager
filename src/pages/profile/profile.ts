@@ -17,7 +17,8 @@ export class ProfilePage {
 
     // Get the user's profile from the service (and thus from firebase)
     // database event triggers and observers
-    // .on('value', function()) is a value observer to a list of data - when the thing being observed changes value, it returns an iterable list with values we can assign in the subsequent arrow function
+    // .on('value', function(snapshot)) is a value observer to a list of data - when the databse reference being observed changes value, it returns an iterable list of all children nodes with values we can assign in the subsequent arrow function. list may have zero or only one item
+    // see https://firebase.google.com/docs/database/web/read-and-write "listen for value events"
 
   ionViewDidLoad() {
     this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
