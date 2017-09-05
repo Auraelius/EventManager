@@ -18,7 +18,7 @@ export class MyApp {
       authDomain: "eventmanager-7bf03.firebaseapp.com",
       databaseURL: "https://eventmanager-7bf03.firebaseio.com",
       projectId: "eventmanager-7bf03",
-      storageBucket: "",
+      storageBucket: "eventmanager-7bf03.appspot.com",
       messagingSenderId: "487834407993"
     });
 
